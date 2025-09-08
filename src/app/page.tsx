@@ -31,14 +31,6 @@ export default function Home() {
     
     if (name) {
       setGuestName(name);
-      // Enviar tracking de que se vio la invitación
-      fetch('/api/track-view', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name }),
-      }).catch(err => console.error('Error tracking view:', err));
     }
     
     if (type && ['male', 'female', 'couple'].includes(type)) {
@@ -264,31 +256,104 @@ export default function Home() {
       </section>
 
       {/* Sección de información del evento */}
-      <section id="informacion" className="h-screen py-16 px-6 md:px-20 bg-[#fff0f3]">
-        <h2 className="text-3xl font-bold text-center text-pink-700">Información</h2>
-        {/* Detalles del evento con iconos */}
-        <div className="mt-6 text-center space-y-3">
-          <p><b>📅 Fecha:</b> 2 de noviembre, 2025</p>
-          <p><b>🕔 Hora:</b> 12:30 hrs</p>
-          <p><b>📍 Lugar:</b> Centro de eventos Los Naranjos</p>
-          <p><b>📖 Cronograma:</b> Ceremonia, cena y fiesta</p>
-        </div>
+      <section id="informacion" className="min-h-screen py-16 px-6 md:px-20 bg-[#fff0f3]">
         
+        {/* Grid de información - 2x2 */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+          
+          {/* Mapa */}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Ubicación</h3>
+            <div className="w-full h-32 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.3445200101987!2d-70.7320711133196!3d-33.674142304462165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x966320a82211b543%3A0xd22ecaa048bc51a8!2sHacienda%20Los%20Naranjos!5e0!3m2!1sen!2scl!4v1757357865198!5m2!1sen!2scl"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación del evento"
+              ></iframe>
+            </div>
+          </div>
+
+          {/* Lista de regalos */}
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <div className="mb-4">
+              <div className="w-16 h-16 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-4">
+                <span className="text-2xl">🎁</span>
+              </div>
+            </div>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Lista de Regalos</h3>
+            <p className="text-gray-600 mb-6">
+              Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo, puedes encontrar nuestra lista aquí.
+            </p>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-pink-600 text-white px-6 py-3 rounded-full hover:bg-pink-700 transition-colors"
+            >
+              Ver Lista de Regalos
+            </a>
+          </div>
+
+          {/* Dress Code */}
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <div className="mb-4">
+              <div className="w-16 h-16 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-4">
+                <span className="text-2xl">👔</span>
+              </div>
+            </div>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Dress Code</h3>
+            <p className="text-gray-600 mb-2">
+              <strong>Formal / Cocktail</strong>
+            </p>
+            <p className="text-gray-600 text-sm">
+              Sugerimos evitar el color blanco y tonos muy claros. ¡Queremos que te sientas cómodo y elegante!
+            </p>
+          </div>
+
+          {/* Horario */}
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <div className="mb-4">
+              <div className="w-16 h-16 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-4">
+                <span className="text-2xl">⏰</span>
+              </div>
+            </div>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Horario</h3>
+            <div className="text-gray-600 space-y-2">
+              <p><strong>12:30 hrs</strong> - Ceremonia</p>
+              <p><strong>13:30 hrs</strong> - Cocktail</p>
+              <p><strong>15:00 hrs</strong> - Almuerzo</p>
+              <p><strong>17:00 hrs</strong> - Fiesta</p>
+            </div>
+          </div>
+          
+        </div>
       </section>
 
       {/* Sección para confirmar asistencia */}
-      <section id="confirmar" className="h-screen py-16 px-6 md:px-20 text-center">
-        <h2 className="text-3xl font-bold text-pink-700">Confirmar asistencia</h2>
-        <p className="mt-4">Por favor confirma tu asistencia llenando el formulario en el siguiente enlace:</p>
-        {/* Enlace al formulario de confirmación (reemplazar con URL real) */}
-        <a
-          href="https://forms.gle/2DWRcbDWdTdCbXjx8" // <-- reemplazar con link real
-          target="_blank"    // Abre en nueva pestaña
-          rel="noopener noreferrer"  // Seguridad para enlaces externos
-          className="mt-6 inline-block bg-pink-600 text-white px-6 py-3 rounded-full hover:bg-pink-700"
-        >
-          Confirmar aquí
-        </a>
+      <section id="confirmar" className="h-screen py-8 px-6 md:px-20 flex flex-col justify-center items-center text-center">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl md:text-7xl font-regular text-pink-700 mb-6 leading-loose" style={{ fontFamily: "adelia" }}>
+            ¿Qué esperas para vernos ese día?
+          </h2>
+          <p className="text-sm md:text-lg text-gray-700 mb-8 leading-relaxed">
+            Tu confirmación es muy importante para que podamos esperarte como mereces.<br />
+            ¡Completa este formulario y acompáñanos en esta gran aventura!
+          </p>
+          {/* Enlace al formulario de confirmación */}
+          <a
+            href="https://forms.gle/2DWRcbDWdTdCbXjx8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-pink-600 text-white px-12 py-4 rounded-full hover:bg-pink-700 transition-colors text-xl font-semibold shadow-lg"
+          >
+            Confirmar Asistencia
+          </a>
+        </div>
       </section>
 
       {/* Pie de página */}
@@ -306,14 +371,6 @@ export default function Home() {
           >
             @tarjeteados
           </a>, 2025
-          {/* Enlace discreto al generador para administradores */}
-          <br />
-          <a
-            href="/generator"
-            className="text-xs text-orange-200 hover:underline opacity-60"
-          >
-            Admin
-          </a>
         </div>
       </footer>
     </div>
