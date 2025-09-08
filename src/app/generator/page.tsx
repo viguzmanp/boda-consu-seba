@@ -73,7 +73,7 @@ export default function InvitationGenerator() {
 
   // Generar la URL personalizada
   const generateURL = () => {
-    const baseURL = window.location.origin;
+    const baseURL = typeof window !== 'undefined' ? window.location.origin : '';
     const params = new URLSearchParams();
     
     if (name) params.set('name', name);
