@@ -28,3 +28,32 @@ body {
   color: var(--foreground);
   font-family: 'Lexend', sans-serif;
 }
+
+/* Prevenir scroll horizontal en móviles */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Asegurar que todos los elementos no excedan el ancho de la pantalla */
+* {
+  box-sizing: border-box;
+}
+
+/* Solo aplicar max-width a elementos que puedan causar overflow */
+img, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Específicamente para móviles */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Asegurar que elementos absolutos no causen overflow */
+  .absolute {
+    max-width: 100vw;
+  }
+}
