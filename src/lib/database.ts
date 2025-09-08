@@ -86,8 +86,11 @@ export class InvitationDB {
   // Obtener estadísticas
   static getStats() {
     const totalStmt = db.prepare('SELECT COUNT(*) as total FROM invitations');
-    const sentStmt = db.prepare('SELECT COUNT(*) as sent FROM invitations WHERE status = "sent"');
-    const viewedStmt = db.prepare('SELECT COUNT(*) as viewed FROM invitations WHERE status = "viewed"');
+    // Enviadas: sent, viewed, confirmed
+    const sentStmt = db.prepare('SELECT COUNT(*) as sent FROM invitations WHERE status IN ("sent", "viewed", "confirmed")');
+    // Vistas: viewed, confirmed
+    const viewedStmt = db.prepare('SELECT COUNT(*) as viewed FROM invitations WHERE status IN ("viewed", "confirmed")');
+    // Confirmadas: confirmed
     const confirmedStmt = db.prepare('SELECT COUNT(*) as confirmed FROM invitations WHERE status = "confirmed"');
     
     return {
