@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Copy, Check, Trash2, Eye, Send, CheckCircle } from "lucide-react";
 import Head from "next/head";
+import Link from "next/link";
 
 interface Invitation {
   id?: number;
@@ -191,9 +192,9 @@ export default function InvitationGenerator() {
               Generador de Invitaciones
             </h1>
             <p className="text-gray-600">Crea enlaces personalizados para cada invitado</p>
-            <a href="/" className="text-orange-800 hover:underline mt-2 inline-block">
+            <Link href="/" className="text-orange-800 hover:underline mt-2 inline-block">
               ← Volver a la invitación
-            </a>
+            </Link>
             
             {/* Estadísticas */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">

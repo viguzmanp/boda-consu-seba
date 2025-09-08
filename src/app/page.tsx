@@ -225,7 +225,7 @@ export default function Home() {
             {/* Contenido de la cita */}
             <div className="relative z-10 px-6 md:px-8 py-6 mb-30">
               <p className="text-base md:text-lg italic text-orange-600 font-light leading-normal mb-2">
-                "Uno solo puede ser vencido, pero dos podrán resistir. Y además, la cuerda de tres hilos no se rompe fácilmente."
+                &ldquo;Uno solo puede ser vencido, pero dos podrán resistir. Y además, la cuerda de tres hilos no se rompe fácilmente.&rdquo;
               </p>
               <cite className="text-xs md:text-sm text-orange-700 font-medium">Eclesiastés 4:12</cite>
             </div>

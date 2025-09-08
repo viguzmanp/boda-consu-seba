@@ -94,10 +94,10 @@ export class InvitationDB {
     const confirmedStmt = db.prepare('SELECT COUNT(*) as confirmed FROM invitations WHERE status = "confirmed"');
     
     return {
-      total: (totalStmt.get() as any).total,
-      sent: (sentStmt.get() as any).sent,
-      viewed: (viewedStmt.get() as any).viewed,
-      confirmed: (confirmedStmt.get() as any).confirmed,
+      total: (totalStmt.get() as { total: number }).total,
+      sent: (sentStmt.get() as { sent: number }).sent,
+      viewed: (viewedStmt.get() as { viewed: number }).viewed,
+      confirmed: (confirmedStmt.get() as { confirmed: number }).confirmed,
     };
   }
 }
